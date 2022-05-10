@@ -44,3 +44,6 @@ input("Please Maximize your console window then press ENTER...")
 clear_screen()
 
 print(title)
+
+# prevent closing on end
+input("Press ENTER to close")
