@@ -1,20 +1,11 @@
 # ascii art title from https://patorjk.com/software/taag/#p=display&f=Bloody&t=Dungeon%20%0ADelve
+# Our main code file.  It mainly runs the game loop
+# by Travis Mix
+# May 09, 2022
 
-import os
-import platform
+from game_loop import *
 
-os_name = platform.system()
-clear = ""
 
-# clear console based on operating system
-if os_name == "Windows":
-    clear = "cls"
-else:
-    # mac or linux
-    clear = "clear"
-
-def clear_screen():
-    os.system(clear)
 
 
 title = """
@@ -45,5 +36,9 @@ clear_screen()
 
 print(title)
 
+# start game loop
+game_loop()
+
 # prevent closing on end
-input("Press ENTER to close")
+print() # spacing
+input("Thanks for playing Dungeon Delve! Press ENTER to close")
