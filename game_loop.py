@@ -2,9 +2,10 @@
 # by Travis Mix
 # May 11, 2022
 
-from monster import *
 import os
 import platform
+from monster import *
+from player import *
 
 os_name = platform.system()
 clear = ""
@@ -27,9 +28,13 @@ def game_loop():
     """
     keep_running = True
     monster_one = Monster(10, 5)
+    monster_two = Monster(10, 5)
+    player_one = Player(10, 5, 0, 1)
 
     while keep_running:
         monster_one.attack()
+        player_one.report_player_stats()
+
         
         player_quit = input("wanna quit? ('y/n') ")
         clear_screen()
