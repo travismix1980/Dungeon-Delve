@@ -23,6 +23,8 @@ class Player():
     # player combat actions
     def block(self):
         self.blocking = True
+        self.charging = False
+        self.charging_amount = 1
 
     def attack(self):
         self.attacking = True
@@ -31,6 +33,8 @@ class Player():
 
     def charging(self):
         self.charging_amount += 1
+        self.blocking = False
+        self.attacking = False
 
     # this will need tweaking
     def player_reset(self):
