@@ -3,7 +3,7 @@
 # |2boss          8empty   14empty   20walled  26empty      |
 # |3walled        9walled  15walled  21chest2  27empty      |
 # |4player start  10walled 16chest1  22walled  28monster1   |
-# |5empty         11walled 17empty   23empty   29empty      |  
+# |5empty         11walled 17empty   23empty   29empty      |
 # |6empty         12empty  18empty   24walled  30walled     |
 #------------------------------------------------------------
 
