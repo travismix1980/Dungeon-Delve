@@ -6,6 +6,7 @@ import os
 import platform
 from monster import *
 from player import *
+from game_map import *
 
 os_name = platform.system()
 clear = ""
@@ -30,6 +31,8 @@ def game_loop():
     monster_one = Monster(10, 5)
     monster_two = Monster(10, 5)
     player_one = Player(10, 5, 0, 1)
+    map = GameMap()
+    map.print_map()
 
     while keep_running:
         monster_one.attack()
