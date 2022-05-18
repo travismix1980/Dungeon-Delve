@@ -32,9 +32,10 @@ def game_loop():
     monster_two = Monster(10, 5)
     player_one = Player(10, 5, 0, 1)
     map = GameMap()
-    map.print_map()
+    
 
     while keep_running:
+        map.print_map()
         monster_one.attack()
         player_one.report_player_stats()
 
