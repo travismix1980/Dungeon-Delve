@@ -12,6 +12,7 @@ from asyncio.windows_events import NULL
 
 room_zero = {
     id: 0,
+    "move_options": ["none"],
     "contains": "game_over",
     "next_room": NULL
 }
@@ -232,7 +233,15 @@ class GameMap():
     """
 
     def __init__(self):
-        self.map = [room_zero, room_one, room_two, room_three, room_four, room_five, room_six, room_seven, room_eight, room_nine, room_ten, room_eleven, room_twelve, room_thirteen, room_fourteen, room_fifteen, room_sixteen, room_seventeen, room_eighteen, room_ninteen, room_twenty, room_twentyone, room_twentytwo, room_twentythree, room_twentyfour, room_twentyfive, room_twentysix, room_twentyseven, room_twentyeight, room_twentynine, room_thirty]
+        self.map = [room_zero, room_one, room_two, room_three, room_four, room_five, room_six, room_seven, room_eight, room_nine, room_ten, room_eleven, room_twelve, room_thirteen, room_fourteen, room_fifteen, room_sixteen, room_seventeen, room_eighteen, room_ninteen, room_twenty, room_twentyone, room_twentytwo, room_twentythree, room_twentyfour, room_twentyfive, room_twentysix, room_twentyseven, room_twentyeight, room_twentynine, room_thirty],
+        self.start_location = 29 # player start on map
 
     def print_map(self):
-        print(self.map)
+        print("You are in the starting room of the dungeon")
+        position = self.start_location
+        print(f"You are in room: {self.start_location}")
+        print(f"The room contains: {self.map[0][position]['contains']}")
+        move_options_str = ""
+        for i in range (len(self.map[0][position]['move_options'])):
+            move_options_str += self.map[0][position]['move_options'][i] + ", "
+        print(f"You can move {move_options_str}")
