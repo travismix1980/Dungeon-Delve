@@ -7,14 +7,11 @@
 # |6empty         12empty  18empty   24walled  30walled     |
 #------------------------------------------------------------
 
-from asyncio.windows_events import NULL
-
-
 room_zero = {
     id: 0,
     "move_options": ["none"],
     "contains": "game_over",
-    "next_room": NULL
+    "next_room": None
 }
 
 room_one = {
@@ -35,7 +32,7 @@ room_three = {
     id: 3,
     "move_options": ["none"],
     "contains": "wall",
-    "next_room": NULL
+    "next_room": None
 }
 
 room_four = {
@@ -63,7 +60,7 @@ room_seven = {
     id: 7,
     "move_options": ["none"],
     "contains": "wall",
-    "next_room": NULL
+    "next_room": None
 }
 
 room_eight = {
@@ -77,21 +74,21 @@ room_nine = {
     id: 9,
     "move_options": ["none"],
     "contains": "wall",
-    "next_room": NULL
+    "next_room": None
 }
 
 room_ten = {
     id: 10,
     "move_options": ["none"],
     "contains": "wall",
-    "next_room": NULL
+    "next_room": None
 }
 
 room_eleven = {
     id: 11,
     "move_options": ["none"],
     "contains": "wall",
-    "next_room": NULL
+    "next_room": None
 }
 
 room_twelve = {
@@ -119,7 +116,7 @@ room_fifteen = {
     id: 15,
     "move_options": ["none"],
     "contains": "wall",
-    "next_room": NULL
+    "next_room": None
 }
 
 room_sixteen = {
@@ -154,7 +151,7 @@ room_twenty = {
     id: 20,
     "move_options": ["none"],
     "contains": "wall",
-    "next_room": NULL
+    "next_room": None
 }
 
 room_twentyone = {
@@ -168,7 +165,7 @@ room_twentytwo = {
     id: 22,
     "move_options": ["none"],
     "contains": "wall",
-    "next_room": NULL
+    "next_room": None
 }
 
 room_twentythree = {
@@ -182,7 +179,7 @@ room_twentyfour = {
     id: 24,
     "move_options": ["none"],
     "contains": "wall",
-    "next_room": NULL
+    "next_room": None
 }
 
 room_twentyfive = {
@@ -224,7 +221,7 @@ room_thirty = {
     id: 30,
     "move_options": ["none"],
     "contains": "wall",
-    "next_room": NULL
+    "next_room": None
 }
 
 class GameMap():
@@ -236,13 +233,13 @@ class GameMap():
         self.map = [room_zero, room_one, room_two, room_three, room_four, room_five, room_six, room_seven, room_eight, room_nine, room_ten, room_eleven, room_twelve, room_thirteen, room_fourteen, room_fifteen, room_sixteen, room_seventeen, room_eighteen, room_ninteen, room_twenty, room_twentyone, room_twentytwo, room_twentythree, room_twentyfour, room_twentyfive, room_twentysix, room_twentyseven, room_twentyeight, room_twentynine, room_thirty],
         self.start_location = 4 # player start on map
         self.position = self.start_location
+        self.move_options_str = ""
 
     def print_map(self):
         # print("You are in the starting room of the dungeon")
         print(f"You are in room: {self.position}")
         print(f"The room contains: {self.map[0][self.position]['contains']}")
-        move_options_str = ""
         for i in range (len(self.map[0][self.position]['move_options'])):
-            move_options_str += self.map[0][self.position]['move_options'][i] + ", "
-        print(f"You can move {move_options_str}")
+            self.move_options_str += self.map[0][self.position]['move_options'][i] + ", "
+        print(f"You can move {self.move_options_str}")
         
