@@ -36,13 +36,20 @@ def game_loop():
 
     while keep_running:
         map.print_map()
-        monster_one.attack()
+        # monster_one.attack()
         player_one.report_player_stats()
-
         
-        player_quit = input("wanna quit? ('y/n') ")
+        #tutorial level only for now
+        if map.position == 5:
+            break
+        else:
+            choice = input("Type 'south' to head to the next room: ") # choice will be used later
+            map.position = int(map.map[0][map.position]["next_room"][choice.lower()])
+            print(map.position)
+        
+        # player_quit = input("wanna quit? ('y/n') ")
         clear_screen()
 
-        if player_quit.lower() == 'y':
-            keep_running = False
+        # if player_quit.lower() == 'y':
+        #     keep_running = False
         
