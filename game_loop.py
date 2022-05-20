@@ -43,7 +43,7 @@ def game_loop():
         if map.position == 5:
             break
         else:
-            choice = input(f"Type '{map.move_options_str}' to head to the next room: ")
+            choice = input(f"Type '{map.move_options_str.upper()}' to head to the next room: ")
             map.position = int(map.map[0][map.position]["next_room"][choice.lower()])
             print(map.position)
         

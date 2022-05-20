@@ -236,10 +236,11 @@ class GameMap():
         self.move_options_str = ""
 
     def print_map(self):
+        self.move_options_str = ""
         # print("You are in the starting room of the dungeon")
         print(f"You are in room: {self.position}")
         print(f"The room contains: {self.map[0][self.position]['contains']}")
         for i in range (len(self.map[0][self.position]['move_options'])):
             self.move_options_str += self.map[0][self.position]['move_options'][i] + ", "
-        print(f"You can move {self.move_options_str}")
+        print(f"You can move {self.move_options_str.upper()}")
         
