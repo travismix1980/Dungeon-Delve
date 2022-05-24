@@ -38,14 +38,14 @@ room_three = {
 room_four = {
     id: 4,
     "move_options": ["south"],
-    "contains": "start",
+    "contains": "tutorial",
     "next_room": {"south": 5}
 }
 
 room_five = {
     id: 5,
     "move_options": ["north", "south"],
-    "contains": "game_over", #change back to empty after week 5 submission
+    "contains": "torch",
     "next_room": {"north": 4, "south": 6}
 }
 
@@ -237,7 +237,6 @@ class GameMap():
 
     def print_map(self):
         self.move_options_str = ""
-        # print("You are in the starting room of the dungeon")
         print(f"You are in room: {self.position}")
         print(f"The room contains: {self.map[0][self.position]['contains']}")
         for i in range (len(self.map[0][self.position]['move_options'])):

@@ -7,6 +7,7 @@ import platform
 from monster import *
 from player import *
 from game_map import *
+from game_functions import *
 
 os_name = platform.system()
 clear = ""
@@ -32,20 +33,27 @@ def game_loop():
     monster_two = Monster(10, 5)
     player_one = Player(10, 5, 0, 1)
     map = GameMap()
-    
+
 
     while keep_running:
+        # choice = input(f"Type '{map.move_options_str.upper()}' to head to the next room: ")
+        # map.position = int(map.map[0][map.position]["next_room"][choice.lower()])
+        # print(map.position)
+    
+        if map.map[0][map.position]['contains'] == "tutorial":
+            run_tutorial()
+        elif map.map[0][map.position]['contains'] == "torch":
+            torch()
+        elif map.map[0][map.position]['contains'].__contains__("chest"):
+            chest()
+        elif map.map[0][map.position]['contains'].__contains__("monster"):
+            monster()
+        elif map.map[0][map.position]['contains'] == "boss":
+            boss()
+
         map.print_map()
-        # monster_one.attack()
         player_one.report_player_stats()
-        
-        #tutorial level only for now
-        if map.position == 5:
-            break
-        else:
-            choice = input(f"Type '{map.move_options_str.upper()}' to head to the next room: ")
-            map.position = int(map.map[0][map.position]["next_room"][choice.lower()])
-            print(map.position)
+        input("Pause")
         
         # player_quit = input("wanna quit? ('y/n') ")
         clear_screen()
