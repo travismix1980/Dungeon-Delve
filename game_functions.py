@@ -17,6 +17,8 @@ def run_tutorial():
         up your attack level is which will increase damage the more charged 
         your attack is.  You can take another look at this message anytime
         by typing in HELP.  You can quit anytime by typing QUIT as well.
+
+        Helpful Tip: Get a pencil and paper and map out your journey
         """
         print(tutorial_output)
         input("Press ENTER To get started")
