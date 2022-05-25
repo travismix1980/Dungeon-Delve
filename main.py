@@ -41,4 +41,4 @@ game_loop()
 
 # prevent closing on end
 print() # spacing
-input("Thanks for playing the Dungeon Delve demo! Press ENTER to close")
+input("Thanks for Playing Dungeon Delve! Press ENTER to exit the game.")

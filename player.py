@@ -19,6 +19,7 @@ class Player():
         self.attacking = False
         self.charging = False
         self.charging_amount = 1
+        self.torch = False
     
     # player combat actions
     def block(self):
@@ -46,7 +47,10 @@ class Player():
         self.damage += 3
         self.max_hp += 5
         self.hp = self.max_hp
+    
+    def pickup_torch(self):
+        self.torch = True
 
     def report_player_stats(self):
-        player_stats = f"HP: {self.hp} \tPotions: {self.healing_potions} \tCharges: {self.charging_amount}"
+        player_stats = f"HP: {self.hp}\tPotions: {self.healing_potions}\tCharges: {self.charging_amount}\tTorch: {self.torch}"
         print(player_stats)

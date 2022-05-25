@@ -3,8 +3,8 @@
 # |2boss          8empty   14empty   20walled  26empty      |
 # |3walled        9walled  15walled  21chest2  27empty      |
 # |4player start  10walled 16chest1  22walled  28monster1   |
-# |5empty         11walled 17empty   23empty   29empty      |
-# |6empty         12empty  18empty   24walled  30walled     |
+# |5torch         11walled 17empty   23empty   29empty      |
+# |6require torch 12empty  18empty   24walled  30walled     |
 #------------------------------------------------------------
 
 room_zero = {
@@ -46,13 +46,14 @@ room_five = {
     id: 5,
     "move_options": ["north", "south"],
     "contains": "torch",
+    "actions": "torch",
     "next_room": {"north": 4, "south": 6}
 }
 
 room_six = {
     id: 6,
-    "move_options": ["north", "east"],
-    "contains": "empty",
+    "move_options": ["north"],
+    "contains": "requires_torch",
     "next_room": {"north": 5, "east": 12}
 }
 
@@ -237,9 +238,16 @@ class GameMap():
 
     def print_map(self):
         self.move_options_str = ""
+        print() # spacing
         print(f"You are in room: {self.position}")
-        print(f"The room contains: {self.map[0][self.position]['contains']}")
+        # print(f"The room contains: {self.map[0][self.position]['contains']}")
         for i in range (len(self.map[0][self.position]['move_options'])):
-            self.move_options_str += self.map[0][self.position]['move_options'][i] + ", "
+            self.move_options_str += self.map[0][self.position]['move_options'][i] 
+            if i < len(self.map[0][self.position]['move_options']) - 1:
+                self.move_options_str += " or "
+        if self.map[0][self.position].__contains__('actions'):
+            self.move_options_str += " or " + self.map[0][self.position]['actions']
+                
+        print() # spacing
         print(f"You can move {self.move_options_str.upper()}")
         

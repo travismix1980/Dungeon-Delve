@@ -16,13 +16,10 @@ def run_tutorial():
         or how many health potions you have.  You can also see how charged
         up your attack level is which will increase damage the more charged 
         your attack is.  You can take another look at this message anytime
-        by typing in HELP.
+        by typing in HELP.  You can quit anytime by typing QUIT as well.
         """
         print(tutorial_output)
         input("Press ENTER To get started")
-
-def torch():
-    print("You picked up the torch")
 
 def chest():
     print("There is a chest")
@@ -32,3 +29,8 @@ def monster():
 
 def boss():
     print("There is a boss monster")
+
+def require_torch():
+    # if torch == True:
+    #     map.room6.directions.add("east")
+    pass
