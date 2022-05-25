@@ -47,6 +47,7 @@ room_five = {
     "move_options": ["north", "south"],
     "contains": "torch",
     "actions": "torch",
+    "message": "You see a TORCH on the wall, and only darkness ahead.",
     "next_room": {"north": 4, "south": 6}
 }
 
@@ -54,7 +55,7 @@ room_six = {
     id: 6,
     "move_options": ["north"],
     "contains": "requires_torch",
-    "next_room": {"north": 5, "east": 12}
+    "next_room": {"north": 5}
 }
 
 room_seven = {
@@ -216,7 +217,7 @@ room_twentynine = {
     "move_options": ["north", "west"],
     "contains": "empty",
     "next_room": {"north": 28, "west": 23}
-}
+} 
 
 room_thirty = {
     id: 30,
@@ -250,4 +251,3 @@ class GameMap():
                 
         print() # spacing
         print(f"You can move {self.move_options_str.upper()}")
-        

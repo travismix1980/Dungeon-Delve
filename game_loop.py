@@ -4,6 +4,7 @@
 
 import os
 import platform
+from posixpath import normpath
 from monster import *
 from player import *
 from game_map import *
@@ -34,7 +35,6 @@ def game_loop():
     player_one = Player(10, 5, 0, 1)
     map = GameMap()
 
-
     while keep_running:
         # choice = input(f"Type '{map.move_options_str.upper()}' to head to the next room: ")
         # map.position = int(map.map[0][map.position]["next_room"][choice.lower()])
@@ -43,9 +43,10 @@ def game_loop():
         if map.map[0][map.position]['contains'] == "tutorial":
             run_tutorial()
         elif map.map[0][map.position]['contains'] == "torch":
-            print("You see a TORCH on the wall, and only darkness ahead.")
+            if map.map[0][map.position]['message'] != "":
+                print(map.map[0][map.position]['message'])
         elif map.map[0][map.position]['contains'] == "requires_torch":
-            require_torch()
+            require_torch(player_one, map)
         elif map.map[0][map.position]['contains'].__contains__("chest"):
             chest()
         elif map.map[0][map.position]['contains'].__contains__("monster"):
@@ -60,10 +61,11 @@ def game_loop():
         print() # spacing
 
         choice = input("What would you like to do? ")
+        print(choice.lower())
         if choice in map.map[0][map.position]["next_room"].keys():
             map.position = int(map.map[0][map.position]["next_room"][choice.lower()])
-        elif choice.lower() == "torch" and choice.lower() == map.map[0][map.position] == 5:
-            player_one.pickup_torch()
+        elif choice.lower() == "torch" and map.map[0][map.position]["contains"] == "torch":
+            pickup_torch(player_one, map)
         elif choice.lower() == "help":
             run_tutorial()
         elif choice.lower() == "quit":

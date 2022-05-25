@@ -30,7 +30,16 @@ def monster():
 def boss():
     print("There is a boss monster")
 
-def require_torch():
-    # if torch == True:
-    #     map.room6.directions.add("east")
-    pass
+def pickup_torch(player, map):
+    player.pickup_torch()
+    map.map[0][map.position].pop("actions")
+    map.map[0][map.position]["message"] = "You have picked up the torch illuminating your way!"
+    print(map.map[0][map.position])
+
+def require_torch(player, map):
+    if player.torch == True:
+        map.map[0][map.position]["move_options"].append("east")
+        map.map[0][map.position]["next_room"]["east"] = 12
+
+    else:
+        print("After stumbling around in the dark you are only able to go back from where you came")
