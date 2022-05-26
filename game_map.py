@@ -124,7 +124,9 @@ room_fifteen = {
 room_sixteen = {
     id: 16,
     "move_options": ["south"],
-    "contains": "chest1",
+    "contains": "chest",
+    "actions": "chest",
+    "message": "You see a CHEST.  Maybe check inside for something useful",
     "next_room": {"south": 17}
 }
 
@@ -159,7 +161,9 @@ room_twenty = {
 room_twentyone = {
     id: 21,
     "move_options": ["east"],
-    "contains": "chest2",
+    "contains": "chest",
+    "actions": "chest",
+    "message": "You see a CHEST.  Maybe check inside for something useful",
     "next_room": {"east": 27}
 }
 
@@ -233,7 +237,7 @@ class GameMap():
 
     def __init__(self):
         self.map = [room_zero, room_one, room_two, room_three, room_four, room_five, room_six, room_seven, room_eight, room_nine, room_ten, room_eleven, room_twelve, room_thirteen, room_fourteen, room_fifteen, room_sixteen, room_seventeen, room_eighteen, room_ninteen, room_twenty, room_twentyone, room_twentytwo, room_twentythree, room_twentyfour, room_twentyfive, room_twentysix, room_twentyseven, room_twentyeight, room_twentynine, room_thirty],
-        self.start_location = 4 # player start on map
+        self.start_location = 4 
         self.position = self.start_location
         self.move_options_str = ""
 

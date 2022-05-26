@@ -23,8 +23,17 @@ def run_tutorial():
         print(tutorial_output)
         input("Press ENTER To get started")
 
-def chest():
-    print("There is a chest")
+def chest(player, map):
+    print(map.map[0][map.position]['message'])
+    if player.chest_count == 0:
+        player.open_chest(0, True, True)
+        map.map[0][map.position]['message'] = "You found a sword and a shield!"
+        player.chest_count += 1
+    else:
+        player.open_chest(2, True, True)
+        map.map[0][map.position]['message'] = "Looks like you found 2 health potions!"
+
+    map.map[0][map.position].pop("actions")
 
 def monster():
     print("there is a monster")
@@ -33,6 +42,7 @@ def boss():
     print("There is a boss monster")
 
 def pickup_torch(player, map):
+    print(map.map[0][map.position]['message'])
     player.pickup_torch()
     map.map[0][map.position].pop("actions")
     map.map[0][map.position]["message"] = "You have picked up the torch illuminating your way!"

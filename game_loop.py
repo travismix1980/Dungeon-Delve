@@ -48,7 +48,8 @@ def game_loop():
         elif map.map[0][map.position]['contains'] == "requires_torch":
             require_torch(player_one, map)
         elif map.map[0][map.position]['contains'].__contains__("chest"):
-            chest()
+            if map.map[0][map.position]['message'] != "":
+                print(map.map[0][map.position]['message'])
         elif map.map[0][map.position]['contains'].__contains__("monster"):
             monster()
         elif map.map[0][map.position]['contains'] == "boss":
@@ -66,6 +67,8 @@ def game_loop():
             map.position = int(map.map[0][map.position]["next_room"][choice.lower()])
         elif choice.lower() == "torch" and map.map[0][map.position]["contains"] == "torch":
             pickup_torch(player_one, map)
+        elif choice.lower() == "chest" and map.map[0][map.position]["contains"] == "chest":
+            chest(player_one, map)
         elif choice.lower() == "help":
             run_tutorial()
         elif choice.lower() == "quit":

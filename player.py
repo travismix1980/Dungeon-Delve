@@ -20,6 +20,9 @@ class Player():
         self.charging = False
         self.charging_amount = 1
         self.torch = False
+        self.chest_count = 0
+        self.sword = False
+        self.shield = False
     
     # player combat actions
     def block(self):
@@ -51,6 +54,12 @@ class Player():
     def pickup_torch(self):
         self.torch = True
 
+    def open_chest(self, healing_potions, sword, shield):
+        self.healing_potions += healing_potions
+        self.sword = sword
+        self.shield = shield
+
+
     def report_player_stats(self):
-        player_stats = f"HP: {self.hp}\tPotions: {self.healing_potions}\tCharges: {self.charging_amount}\tTorch: {self.torch}"
+        player_stats = f"HP: {self.hp}\tPotions: {self.healing_potions}\tCharges: {self.charging_amount}\tTorch: {self.torch}\tSword: {self.sword}\tShield: {self.shield}"
         print(player_stats)
