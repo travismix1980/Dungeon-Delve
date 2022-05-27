@@ -4,6 +4,7 @@
 # contains all the game functionality of
 # the game that currently doesn't fit elsewhere
 
+from random import randint
 from game_map import *
 
 def run_tutorial():
@@ -23,6 +24,12 @@ def run_tutorial():
         print(tutorial_output)
         input("Press ENTER To get started")
 
+def run_died():
+    print("You were unsuccessful and have died.  Try again!")
+    print("We will let you keep the torch!")
+    input("Press ENTER To continue")
+
+
 def chest(player, map):
     print(map.map[0][map.position]['message'])
     if player.chest_count == 0:
@@ -36,11 +43,14 @@ def chest(player, map):
     map.map[0][map.position].pop("actions")
 
 def monster(player, monster, map):
+    response = ""
     print("Before you there is a monster")
     if player.sword == True: # if they have a sword then they have a shield
-        combat()
+        response = combat()
     else:
-        sneak()
+        response = sneak(map, player)
+
+    return response
 
 def boss():
     print("There is a boss monster")
@@ -50,8 +60,17 @@ def combat():
     print("You fight the monster")
 
 # TODO: sneak
-def sneak():
-    print("Would you like to turn BACK or sneak PAST the monster?")
+def sneak(map, player):
+    response = input("Would you like to turn BACK or SNEAK past the monster? ")
+    if response.lower() == "back":
+        return response
+    else:
+        sneak_success = randint(1, 20)
+        if sneak_success > 12: # only a 40% chance reset to 12
+            return response
+        else:
+            return "died"
+
 
 def pickup_torch(player, map):
     print(map.map[0][map.position]['message'])

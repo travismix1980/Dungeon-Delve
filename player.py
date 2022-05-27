@@ -60,6 +60,17 @@ class Player():
         self.sword = sword
         self.shield = shield
 
+    def player_died(self):
+        self.healing_potions = 0
+        self.blocking = False
+        self.attacking = False
+        self.charging = False
+        self.charging_amount = 1
+        self.chest_count = 0
+        self.sword = False
+        self.shield = False
+        self.monsters_fought = 0
+
 
     def report_player_stats(self):
         player_stats = f"HP: {self.hp}\tPotions: {self.healing_potions}\tCharges: {self.charging_amount}\tTorch: {self.torch}\tSword: {self.sword}\tShield: {self.shield}"
