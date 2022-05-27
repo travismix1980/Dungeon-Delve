@@ -45,11 +45,13 @@ def monster(player, monster, map):
 def boss():
     print("There is a boss monster")
 
+# TODO: combat
 def combat():
     print("You fight the monster")
 
+# TODO: sneak
 def sneak():
-    print("You sneak past the monster")
+    print("Would you like to turn BACK or sneak PAST the monster?")
 
 def pickup_torch(player, map):
     print(map.map[0][map.position]['message'])

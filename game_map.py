@@ -240,7 +240,7 @@ class GameMap():
 
     def __init__(self):
         self.map = [room_zero, room_one, room_two, room_three, room_four, room_five, room_six, room_seven, room_eight, room_nine, room_ten, room_eleven, room_twelve, room_thirteen, room_fourteen, room_fifteen, room_sixteen, room_seventeen, room_eighteen, room_ninteen, room_twenty, room_twentyone, room_twentytwo, room_twentythree, room_twentyfour, room_twentyfive, room_twentysix, room_twentyseven, room_twentyeight, room_twentynine, room_thirty],
-        self.start_location = 4 # TODO: change back to four
+        self.start_location = 28 # TODO: change back to four
         self.position = self.start_location
         self.move_options_str = ""
 
@@ -256,4 +256,6 @@ class GameMap():
             self.move_options_str += " or " + self.map[0][self.position]['actions']
                 
         print() # spacing
-        print(f"You can move {self.move_options_str.upper()}")
+        # prevent output if we are in a monster or boss room
+        if self.position != 28 and self.position != 25 and self.position != 2:
+            print(f"You can move {self.move_options_str.upper()}")
