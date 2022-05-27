@@ -35,11 +35,21 @@ def chest(player, map):
 
     map.map[0][map.position].pop("actions")
 
-def monster():
-    print("there is a monster")
+def monster(player, monster, map):
+    print("Before you there is a monster")
+    if player.sword == True: # if they have a sword then they have a shield
+        combat()
+    else:
+        sneak()
 
 def boss():
     print("There is a boss monster")
+
+def combat():
+    print("You fight the monster")
+
+def sneak():
+    print("You sneak past the monster")
 
 def pickup_torch(player, map):
     print(map.map[0][map.position]['message'])
@@ -50,8 +60,11 @@ def pickup_torch(player, map):
 
 def require_torch(player, map):
     if player.torch == True:
-        map.map[0][map.position]["move_options"].append("east")
-        map.map[0][map.position]["next_room"]["east"] = 12
-
+        #stop east from being added over and over
+        if map.map[0][map.position]["move_options"].__contains__("east"):
+            pass
+        else:
+            map.map[0][map.position]["move_options"].append("east")
+            map.map[0][map.position]["next_room"]["east"] = 12
     else:
         print("After stumbling around in the dark you are only able to go back from where you came")

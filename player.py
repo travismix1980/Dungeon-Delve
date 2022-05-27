@@ -23,6 +23,7 @@ class Player():
         self.chest_count = 0
         self.sword = False
         self.shield = False
+        self.monsters_fought = 0
     
     # player combat actions
     def block(self):

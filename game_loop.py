@@ -4,7 +4,6 @@
 
 import os
 import platform
-from posixpath import normpath
 from monster import *
 from player import *
 from game_map import *
@@ -36,10 +35,6 @@ def game_loop():
     map = GameMap()
 
     while keep_running:
-        # choice = input(f"Type '{map.move_options_str.upper()}' to head to the next room: ")
-        # map.position = int(map.map[0][map.position]["next_room"][choice.lower()])
-        # print(map.position)
-    
         if map.map[0][map.position]['contains'] == "tutorial":
             run_tutorial()
         elif map.map[0][map.position]['contains'] == "torch":
@@ -51,7 +46,10 @@ def game_loop():
             if map.map[0][map.position]['message'] != "":
                 print(map.map[0][map.position]['message'])
         elif map.map[0][map.position]['contains'].__contains__("monster"):
-            monster()
+            if player_one.monsters_fought == 0:
+                monster(player_one, monster_one, map)
+            else:
+                monster(player_one, monster_two, map)
         elif map.map[0][map.position]['contains'] == "boss":
             boss()
         elif map.map[0][map.position]['contains'] == "game_over":
@@ -77,10 +75,5 @@ def game_loop():
             print("Not a valid choice please try again.")
             continue
 
-        
-        # player_quit = input("wanna quit? ('y/n') ")
         clear_screen()
-
-        # if player_quit.lower() == 'y':
-        #     keep_running = False
         

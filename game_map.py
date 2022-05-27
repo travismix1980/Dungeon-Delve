@@ -21,6 +21,7 @@ room_one = {
     "next_room": {"south": 2, "exit": 0}
 }
 
+# TODO: Boss
 room_two = {
     id: 2,
     "move_options": ["north", "east"],
@@ -188,10 +189,11 @@ room_twentyfour = {
     "next_room": None
 }
 
+# TODO: Monster 2
 room_twentyfive = {
     id: 25,
     "move_options": ["south", "west"],
-    "contains": "monster2",
+    "contains": "monster",
     "next_room": {"south": 26, "west": 19}
 }
 
@@ -209,10 +211,11 @@ room_twentyseven = {
     "next_room": {"north": 26, "south": 28, "west": 21}
 }
 
+# TODO: Monster 1
 room_twentyeight = {
     id: 28,
     "move_options": ["north", "south"],
-    "contains": "monster1",
+    "contains": "monster",
     "next_room": {"north": 27, "south": 29}
 }
 
@@ -237,7 +240,7 @@ class GameMap():
 
     def __init__(self):
         self.map = [room_zero, room_one, room_two, room_three, room_four, room_five, room_six, room_seven, room_eight, room_nine, room_ten, room_eleven, room_twelve, room_thirteen, room_fourteen, room_fifteen, room_sixteen, room_seventeen, room_eighteen, room_ninteen, room_twenty, room_twentyone, room_twentytwo, room_twentythree, room_twentyfour, room_twentyfive, room_twentysix, room_twentyseven, room_twentyeight, room_twentynine, room_thirty],
-        self.start_location = 4 
+        self.start_location = 4 # TODO: change back to four
         self.position = self.start_location
         self.move_options_str = ""
 
@@ -245,7 +248,6 @@ class GameMap():
         self.move_options_str = ""
         print() # spacing
         print(f"You are in room: {self.position}")
-        # print(f"The room contains: {self.map[0][self.position]['contains']}")
         for i in range (len(self.map[0][self.position]['move_options'])):
             self.move_options_str += self.map[0][self.position]['move_options'][i] 
             if i < len(self.map[0][self.position]['move_options']) - 1:
