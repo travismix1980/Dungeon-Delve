@@ -66,14 +66,12 @@ class Player():
         self.shield = shield
 
     def player_died(self):
-        self.healing_potions = 0
         self.blocking = False
         self.attacking = False
         self.charging = False
         self.charging_amount = 1
-        self.chest_count = 0
-        self.sword = False
-        self.shield = False
+        self.hp = self.max_hp
+        self.monsters_fought = 0
 
     def player_heal(self):
         if self.healing_potions > 0:

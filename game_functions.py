@@ -26,7 +26,7 @@ def run_tutorial():
 
 def run_died():
     print("You were unsuccessful and have died.  Try again!")
-    print("We will let you keep the torch!")
+    print("We will let you keep your gear")
     input("Press ENTER To continue")
 
 
@@ -61,9 +61,13 @@ def combat(map, player, monster):
     print("The monster sees you and starts to run towards you raising its weapon")
     player.monsters_fought += 1
     response = ""
-    while player.hp > 0 and monster.hp > 0:
+    while True:
         
-        if player.hp > 0 or monster.hp > 0:
+        # elif player.hp > 0 or monster.hp > 0:
+        if player.hp <= 0:
+            response = "died"
+            break
+        elif player.hp > 0 or monster.hp > 0:
             # combat happens player first followed by monster
             player_choice = input("ATTACK, BLOCK, CHARGE attack, or use health POTION? ")
             if player_choice.lower() == "attack":
@@ -90,6 +94,9 @@ def combat(map, player, monster):
                 # for now to turn it in move player to room 0 to end game          
                 response = "player_win"
                 break
+            elif player.hp <= 0:
+                response = "died"
+                break
             else:
                 # monsters turn
                 monster_choice = monster.attack()
@@ -104,10 +111,8 @@ def combat(map, player, monster):
 
                     print(f"The monster swings its weapon at you hitting you for {monster_damage} damage")
                     player.hp -= monster_damage
-        elif player.hp <= 0:
-            response = "died"
-            map.map[0][map.position]['contains'] = ""
-            break
+                    monster.charge_counter = 1
+            
         player.report_player_stats()
     return response
     

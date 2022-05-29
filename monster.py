@@ -21,7 +21,6 @@ class Monster():
         """
         monster_attack = choice(self.what_doing)
         if monster_attack == "attack":
-            self.charge_counter = 1 # reset charge level to base
             return "attack"
         else:
             self.charge_counter += 1

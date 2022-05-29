@@ -64,8 +64,6 @@ def game_loop():
                 if monster_response == "player_win":
                     map.map[0][map.position]['contains'] = "player_win"
                     map.map[0][map.position]['move_options'].extend(["north", "south"])
-                else: # player died
-                    map.map[0][map.position]['contains'] = "died"
             else:
                 monster_response = monster(player_one, monster_two, map)
         elif map.map[0][map.position]['contains'] == "boss":
