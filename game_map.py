@@ -214,7 +214,7 @@ room_twentyseven = {
 # TODO: Monster 1
 room_twentyeight = {
     id: 28,
-    "move_options": None, # north, south
+    "move_options": [], # north, south
     "contains": "monster",
     "next_room": {"north": 27, "south": 29, "back": 29, "sneak": 27}
 }
@@ -240,7 +240,7 @@ class GameMap():
 
     def __init__(self):
         self.map = [room_zero, room_one, room_two, room_three, room_four, room_five, room_six, room_seven, room_eight, room_nine, room_ten, room_eleven, room_twelve, room_thirteen, room_fourteen, room_fifteen, room_sixteen, room_seventeen, room_eighteen, room_ninteen, room_twenty, room_twentyone, room_twentytwo, room_twentythree, room_twentyfour, room_twentyfive, room_twentysix, room_twentyseven, room_twentyeight, room_twentynine, room_thirty],
-        self.start_location = 4 # TODO: change back to four
+        self.start_location = 4 
         self.position = self.start_location
         self.move_options_str = ""
 
@@ -249,15 +249,16 @@ class GameMap():
         print() # spacing
         print(f"You are in room: {self.position}")
         # prevent output if we are in a monster or boss room
-        if self.position != 28 and self.position != 25 and self.position != 2:
+        if self.map[0][self.position]['contains'] != "monster":
             for i in range (len(self.map[0][self.position]['move_options'])):
                 self.move_options_str += self.map[0][self.position]['move_options'][i] 
                 if i < len(self.map[0][self.position]['move_options']) - 1:
                     self.move_options_str += " or "
             if self.map[0][self.position].__contains__('actions'):
                 self.move_options_str += " or " + self.map[0][self.position]['actions']
+            self.move_options_str += " or potion"
                 
         print() # spacing
         # prevent output if we are in a monster or boss room
-        if self.position != 28 and self.position != 25 and self.position != 2:
+        if self.map[0][self.position]['contains'] != "monster":
             print(f"You can move {self.move_options_str.upper()}")

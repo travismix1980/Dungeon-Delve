@@ -29,15 +29,17 @@ class Player():
     def block(self):
         self.blocking = True
         self.charging = False
-        self.charging_amount = 1
+        self.attacking = False
 
     def attack(self):
         self.attacking = True
         self.charging = False
-        self.charging_amount = 1
+        self.blocking = False
+        
 
-    def charging(self):
+    def player_charging(self):
         self.charging_amount += 1
+        self.charging = True
         self.blocking = False
         self.attacking = False
 
@@ -45,12 +47,15 @@ class Player():
     def player_reset(self):
         self.attacking = False
         self.blocking = False
+        self.charging = False
+        self.charging_amount = 1
 
     def player_level_up(self):
         self.level += 1
         self.damage += 3
         self.max_hp += 5
         self.hp = self.max_hp
+        print("Your hitpoints have increased as well as your overall damage!")
     
     def pickup_torch(self):
         self.torch = True
@@ -69,8 +74,15 @@ class Player():
         self.chest_count = 0
         self.sword = False
         self.shield = False
-        self.monsters_fought = 0
 
+    def player_heal(self):
+        if self.healing_potions > 0:
+            self.hp += 5
+            if self.hp > self.max_hp:
+                self.hp = self.max_hp
+        else:
+            print("You have no health potions to use.")
+            input("Press ENTER to continue")
 
     def report_player_stats(self):
         player_stats = f"HP: {self.hp}\tPotions: {self.healing_potions}\tCharges: {self.charging_amount}\tTorch: {self.torch}\tSword: {self.sword}\tShield: {self.shield}"

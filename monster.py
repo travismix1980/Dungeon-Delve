@@ -1,4 +1,4 @@
-# Monster and Boss Class
+# Monster class
 
 from random import choice
 
@@ -21,6 +21,8 @@ class Monster():
         """
         monster_attack = choice(self.what_doing)
         if monster_attack == "attack":
-            print("You are attacked by the monster")
+            self.charge_counter = 1 # reset charge level to base
+            return "attack"
         else:
-            print("The monster is charging it's attack")
+            self.charge_counter += 1
+            return "charge"

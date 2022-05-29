@@ -39,10 +39,17 @@ def game_loop():
     while keep_running:
         if map.map[0][map.position]['contains'] == "tutorial":
             run_tutorial()
-            map.map[0][map.position]['contains'] = ""
-        if map.map[0][map.position]['contains'] == "player_died":
+            map.map[0][map.position]['contains'] = "empty"
+        elif map.map[0][map.position]['contains'] == "player_died":
             run_died()
-            map.map[0][map.position]['contains'] = ""
+            map.map[0][map.position]['contains'] = "empty"
+        elif map.map[0][map.position]['contains'] == "gained_xp":
+            print("You defeated the monster and gained some experience!")
+            map.map[0][map.position]['contains'] = "empty"
+        elif map.map[0][map.position]['contains'] == "leveled_up":
+            map.map[0][map.position]['contains'] = "empty"
+            print("You gained enough experience to level up, boosting health, and damage!!!")
+            player_one.player_level_up()
         elif map.map[0][map.position]['contains'] == "torch":
             if map.map[0][map.position]['message'] != "":
                 print(map.map[0][map.position]['message'])
@@ -54,8 +61,13 @@ def game_loop():
         elif map.map[0][map.position]['contains'] == "monster":
             if player_one.monsters_fought == 0:
                 monster_response = monster(player_one, monster_one, map)
+                if monster_response == "player_win":
+                    map.map[0][map.position]['contains'] = "player_win"
+                    map.map[0][map.position]['move_options'].extend(["north", "south"])
+                else: # player died
+                    map.map[0][map.position]['contains'] = "died"
             else:
-                monster(player_one, monster_two, map)
+                monster_response = monster(player_one, monster_two, map)
         elif map.map[0][map.position]['contains'] == "boss":
             boss()
         elif map.map[0][map.position]['contains'] == "game_over":
@@ -80,6 +92,15 @@ def game_loop():
             map.position = map.start_location
             player_one.player_died()
             map.map[0][map.position]['contains'] = "player_died"
+        elif choice.lower() == "player_win":
+            if player_one.monsters_fought < 2:
+                map.map[0][map.position]['contains'] = "gained_xp"
+                map.map[0][map.position]['move_options'] = ["north", "south"]
+            else:
+                map.map[0][map.position]['contains'] = "leveled_up"
+                player_one.player_level_up()
+        elif choice.lower() == "potion":
+            player_one.player_heal()
         elif choice.lower() == "help":
             run_tutorial()
         elif choice.lower() == "quit":
