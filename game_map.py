@@ -25,7 +25,7 @@ room_one = {
 room_two = {
     id: 2,
     "move_options": ["north", "east"],
-    "contains": "boss",
+    "contains": "empty", # boss goes here but not enough time to get working will add after submit for grade
     "next_room": {"north": 1, "east": 8}
 }
 
